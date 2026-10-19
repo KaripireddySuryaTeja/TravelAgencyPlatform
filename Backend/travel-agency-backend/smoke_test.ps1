@@ -11,7 +11,7 @@ try {
     Write-Host 'Backend is DOWN. Starting backend...'
     $env:MONGO_URI = $MONGO_URI
     $env:JWT_SECRET = $JWT_SECRET
-    Start-Process -FilePath 'mvn' -ArgumentList 'spring-boot:run' -WorkingDirectory 'c:\Users\AkshayAdak\Desktop\sprint22\sprint1' -WindowStyle Hidden
+    Start-Process -FilePath 'mvn' -ArgumentList 'spring-boot:run' -WorkingDirectory $PSScriptRoot -WindowStyle Hidden
     
     $timeout = 90
     $elapsed = 0
