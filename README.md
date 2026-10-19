@@ -75,7 +75,7 @@ Out of scope: online payment processing (payment is evidenced by an uploaded con
 ```
 ┌────────────────────┐   REST + JWT    ┌──────────────────────────┐
 │  React SPA         │ ─────────────▶  │  Spring Boot API         │
-│  (Frontend/)       │ ◀─────────────  │  (Backend/sprint1)       │
+│  (Frontend/)       │ ◀─────────────  │  (Backend/)              │
 └────────────────────┘                 │  controller → service →  │
                                        │  repository              │
                                        └───┬──────┬──────┬────────┘
@@ -119,10 +119,10 @@ BOOKED ──▶ DOCUMENTS_VERIFIED ──▶ CONFIRMED ──▶ STARTED ──
 
 ### 1. Configure the backend
 
-Create a `.env` file in `Backend/sprint1/` (it is git-ignored and picked up automatically) from the template:
+Create a `.env` file in `Backend/travel-agency-backend/` (it is git-ignored and picked up automatically) from the template:
 
 ```bash
-cd Backend/sprint1
+cd Backend/travel-agency-backend
 cp .env.example .env      # then fill in your own values
 ```
 
@@ -173,7 +173,7 @@ No credentials are stored in this repository. Supply your own through environmen
 | RabbitMQ (optional) | Local or hosted | `APP_RABBITMQ_ENABLED`, `RABBITMQ_HOST`, `RABBITMQ_USERNAME`, `RABBITMQ_PASSWORD` |
 | ClamAV (optional) | Local or hosted | `CLAMAV_ENABLED`, `CLAMAV_HOST`, `CLAMAV_PORT` |
 
-The complete list is in [`Backend/sprint1/.env.example`](Backend/sprint1/.env.example) and [`Frontend/travel-agency-frontend/.env.example`](Frontend/travel-agency-frontend/.env.example).
+The complete list is in [`Backend/travel-agency-backend/.env.example`](Backend/travel-agency-backend/.env.example) and [`Frontend/travel-agency-frontend/.env.example`](Frontend/travel-agency-frontend/.env.example).
 
 ## API overview
 
@@ -195,7 +195,7 @@ Reports and admin endpoints require the `ADMIN` role. Booking, document and user
 ## Testing
 
 ```bash
-cd Backend/sprint1
+cd Backend/travel-agency-backend
 mvn test
 ```
 
@@ -203,15 +203,15 @@ The backend suite covers authentication, security configuration, JWT handling, s
 
 ## Deployment
 
-- **Docker:** build the jar with `mvn package`, then build the image from `Backend/sprint1/Dockerfile`.
-- **Kubernetes / Helm:** charts and templates live in `Backend/sprint1/deploy-templates`. The chart expects a secret named `travel-agency-secret` holding the keys referenced in `values.yaml`, and an optional `azure-openai-secret` (see `deploy-templates/kubernetes/`). Hostnames in the templates are `example.com` placeholders.
+- **Docker:** build the jar with `mvn package`, then build the image from `Backend/travel-agency-backend/Dockerfile`.
+- **Kubernetes / Helm:** charts and templates live in `Backend/travel-agency-backend/deploy-templates`. The chart expects a secret named `travel-agency-secret` holding the keys referenced in `values.yaml`, and an optional `azure-openai-secret` (see `deploy-templates/kubernetes/`). Hostnames in the templates are `example.com` placeholders.
 - **Frontend:** `npm run build` produces a static bundle in `build/` that can be hosted on any static host (S3, Netlify, Nginx, etc.). Set `REACT_APP_API_BASE_URL` at build time.
 
 ## Project structure
 
 ```
 .
-├── Backend/sprint1/
+├── Backend/travel-agency-backend/
 │   ├── src/main/java/.../controller    REST controllers
 │   ├── src/main/java/.../service       business logic (moderation, storage, security, reports)
 │   ├── src/main/java/.../repository    Spring Data MongoDB repositories

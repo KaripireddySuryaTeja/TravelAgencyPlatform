@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "sprint1.fullname" . }}
+  name: {{ include "travel-agency-backend.fullname" . }}
   labels:
-    {{- include "sprint1.labels" . | nindent 4 }}
+    {{- include "travel-agency-backend.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "sprint1.fullname" . }}
+    name: {{ include "travel-agency-backend.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
