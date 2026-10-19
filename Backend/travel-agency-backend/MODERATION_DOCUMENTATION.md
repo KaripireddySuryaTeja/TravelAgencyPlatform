@@ -188,9 +188,9 @@ The AI model is forced to call the `submit_moderation` function
 
 ```bash
 # Run only moderation tests
-mvn test -pl backend/sprint1 -Dtest="ModerationServiceImplTest,FeedbackServiceTest"
+mvn test -Dtest="ModerationServiceImplTest,FeedbackServiceTest"
 
 # Run all tests
-mvn test -pl backend/sprint1
+mvn test
 ```
 
