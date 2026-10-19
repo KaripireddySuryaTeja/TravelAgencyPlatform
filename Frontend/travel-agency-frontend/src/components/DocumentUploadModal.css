@@ -1,0 +1,360 @@
+/* ── overlay ─────────────────────────────────────────────────── */
+.dum-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 30, 45, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 25px 20px;
+  overflow-y: auto;
+  animation: dum-fade-in 0.18s ease;
+}
+
+@keyframes dum-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── modal ────────────────────────────────────────────────────── */
+.dum-modal {
+  background: #fff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 651px;
+  padding: 25px;
+  min-height: 52vh;
+  position: relative;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.22);
+  animation: dum-slide-up 0.22s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+@keyframes dum-slide-up {
+  from { transform: translateY(28px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* ── close button ────────────────────────────────────────────── */
+.dum-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #0c6d8f;
+  padding: 4px;
+  line-height: 1;
+  transition: color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dum-close:hover { color: #095a76; }
+
+/* ── title ───────────────────────────────────────────────────── */
+.dum-title {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: #0d2b3e;
+  margin: 0;
+  margin-top: 4px;
+}
+
+/* ── content layout ──────────────────────────────────────────── */
+.dum-content {
+  display: grid;
+  grid-template-columns: 225px 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 620px) {
+  .dum-content {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+/* ── tabs section ────────────────────────────────────────────── */
+.dum-tabs-section {
+  flex-shrink: 0;
+}
+
+.dum-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.dum-tab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 9px;
+  position: relative;
+  background: none;
+  border: none;
+  padding: 9px 11px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #677883;
+  transition: all 0.15s;
+  text-align: left;
+  border-radius: 6px;
+}
+
+.dum-tab::after {
+  content: '';
+  position: absolute;
+  left: 11px;
+  right: 11px;
+  bottom: 0;
+  height: 3px;
+  border-radius: 6px;
+  background: transparent;
+}
+
+.dum-tab:hover {
+  color: #0B3857;
+  background: rgba(11, 56, 87, 0.03);
+}
+
+.dum-tab.active {
+  color: #0B3857;
+  font-weight: 600;
+}
+
+.dum-tab.active::after {
+  background: #027EAC;
+}
+
+.dum-tab span {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── upload section ──────────────────────────────────────────– */
+.dum-upload-section {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.dum-upload-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #0d2b3e;
+  margin: 0;
+}
+
+/* ── drop zone ───────────────────────────────────────────────── */
+.dum-drop-zone {
+  border: 1.5px solid #D3E1ED;
+  border-radius: 8px;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: #fafbfc;
+}
+
+.dum-drop-zone:hover {
+  border-color: #b8cfe0;
+  background: #f0f7fc;
+}
+
+.dum-drop-zone-disabled {
+  border-color: #D3E1ED;
+  background: #fafbfc;
+  cursor: default;
+}
+
+.dum-drop-zone-disabled:hover {
+  border-color: #D3E1ED;
+  background: #fafbfc;
+}
+
+.dum-drop-text {
+  font-size: 0.82rem;
+  color: #0B3857;
+  margin: 0;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* ── files list ──────────────────────────────────────────────– */
+.dum-files-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  max-height: 136px;
+  overflow-y: auto;
+  padding-right: 4px;
+  scrollbar-gutter: stable;
+}
+
+.dum-file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 9px 0;
+  background: none;
+  border-radius: 0;
+  border: none;
+}
+
+.dum-file-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+  justify-content: space-between;
+}
+
+.dum-file-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.dum-file-details {
+  min-width: 0;
+  flex: 1;
+}
+
+.dum-file-name {
+  display: block;
+  max-width: 100%;
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: #0B3857;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dum-file-size {
+  font-size: 0.67rem;
+  color: #677883;
+  margin: 1px 0 0 0;
+}
+
+.dum-delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #0B3857;
+  padding: 6px 0 6px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  transition: color 0.15s;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.dum-delete-btn:hover:not(:disabled) { 
+  color: #677883; 
+}
+
+.dum-delete-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── error message ───────────────────────────────────────────– */
+.dum-error {
+  padding: 13px 18px;
+  background: #ffebee;
+  border-left: 4px solid #d63031;
+  border-radius: 6px;
+  font-size: 0.92rem;
+  color: #c92a2a;
+  animation: dum-shake 0.3s ease;
+}
+
+@keyframes dum-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+/* ── actions ─────────────────────────────────────────────────── */
+.dum-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 20px 0 8px;
+  border-top: 1px solid #e0e8ef;
+}
+
+.dum-btn-cancel,
+.dum-btn-save {
+  padding: 8px 22px;
+  border-radius: 7px;
+  font-size: 0.87rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: none;
+}
+
+.dum-btn-cancel {
+  background: #fff;
+  color: #0c6d8f;
+  border: 2px solid #0c6d8f;
+}
+
+.dum-btn-cancel:hover {
+  background: #eef8fc;
+  border-color: #095a76;
+  color: #095a76;
+}
+
+.dum-btn-save {
+  background: #0B3857;
+  color: #fff;
+}
+
+.dum-btn-save:hover:not(:disabled) {
+  background: #092d46;
+}
+
+.dum-btn-save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── scrollbar styling ───────────────────────────────────────– */
+.dum-files-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dum-files-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dum-files-list::-webkit-scrollbar-thumb {
+  background: #a8c5d6;
+  border-radius: 3px;
+}
+
+.dum-files-list::-webkit-scrollbar-thumb:hover {
+  background: #7a8c99;
+}

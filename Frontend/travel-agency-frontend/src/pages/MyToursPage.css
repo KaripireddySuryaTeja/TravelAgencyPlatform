@@ -1,0 +1,469 @@
+/* ── status filter tabs ───────────────────────────────────────── */
+.mt-status-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid #e4eef4;
+  margin-bottom: 32px;
+}
+
+.mt-status-tab {
+  background: none;
+  border: none;
+  padding: 12px 20px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #7fa8be;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.15s;
+}
+
+.mt-status-tab:hover { color: #0c6d8f; }
+
+.mt-status-tab.active {
+  color: #0c6d8f;
+}
+
+.mt-status-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #0c6d8f;
+  border-radius: 3px 3px 0 0;
+}
+
+/* ── bookings grid ───────────────────────────────────────────── */
+.mt-bookings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+  gap: 24px;
+}
+
+/* ── booking card ────────────────────────────────────────────── */
+.mt-card {
+  background: #fff;
+  border: 1px solid #d4e5ed;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: border-color 0.2s;
+}
+
+.mt-card-cancelled {
+  min-height: auto;
+}
+
+.mt-card:hover {
+  border-color: #a8cad9;
+}
+
+/* ── progress stepper (breadcrumb chevron) ────────────────────── */
+.mt-stepper {
+  display: flex;
+  align-items: stretch;
+  height: 36px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.mt-step {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: #eef4f8;
+  border: 1.5px solid #c9d9e5;
+  border-right: none;
+  margin-right: 0;
+  padding-left: 12px;
+  padding-right: 4px;
+}
+
+.mt-step.first {
+  padding-left: 4px;
+}
+
+.mt-step:last-child {
+  border-right: 1.5px solid #c9d9e5;
+}
+
+.mt-step.first {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.mt-step.last {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* Arrow shape using pseudo-elements */
+.mt-step::after {
+  content: '';
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 18px solid transparent;
+  border-bottom: 18px solid transparent;
+  border-left: 10px solid #eef4f8;
+  z-index: 2;
+}
+
+.mt-step::before {
+  content: '';
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 19px solid transparent;
+  border-bottom: 19px solid transparent;
+  border-left: 11px solid #c9d9e5;
+  z-index: 1;
+}
+
+.mt-step:last-child::after,
+.mt-step:last-child::before {
+  display: none;
+}
+
+/* Done state */
+.mt-step.done {
+  background: #ffffff;
+  border-color: #1596c8;
+}
+
+.mt-step.done::after {
+  border-left-color: #ffffff;
+}
+
+.mt-step.done::before {
+  border-left-color: #1596c8;
+}
+
+.mt-step.cancelled {
+  background: #ffffff;
+  border-color: #cb2d2d;
+}
+
+.mt-step.cancelled::after {
+  border-left-color: #ffffff;
+}
+
+.mt-step.cancelled::before {
+  border-left-color: #cb2d2d;
+}
+
+/* Step content */
+.mt-step-content {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 3;
+}
+
+.mt-step-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #a7bfd0;
+  white-space: nowrap;
+}
+
+.mt-step.done .mt-step-label {
+  color: #103b58;
+  font-weight: 700;
+}
+
+.mt-step.done .mt-step-content svg {
+  color: #0c6d8f;
+}
+
+.mt-step.cancelled .mt-step-label,
+.mt-step.cancelled .mt-step-content svg {
+  color: #c61f1f;
+}
+
+.mt-step-indicator {
+  display: none;
+}
+
+
+.mt-step-arrow {
+  display: none;
+}
+
+/* ── card body ───────────────────────────────────────────────── */
+.mt-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mt-tour-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.mt-tour-img {
+  width: 100px;
+  height: 68px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.mt-tour-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0d2b3e;
+  margin: 0 0 3px;
+}
+
+.mt-tour-dest {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.82rem;
+  color: #7fa8be;
+}
+
+/* ── details grid ────────────────────────────────────────────── */
+.mt-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.mt-col-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #0d2b3e;
+  margin: 0 0 10px;
+}
+
+.mt-detail-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: #2d5a70;
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+
+.mt-detail-row svg {
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+.mt-detail-row strong {
+  color: #0d2b3e;
+  font-weight: 700;
+}
+
+.mt-messenger-icon {
+  font-size: 0.82rem;
+}
+
+.mt-no-agent {
+  color: #b0c8d8;
+  font-style: italic;
+}
+
+/* ── card actions ────────────────────────────────────────────── */
+.mt-card-actions {
+  display: flex;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #e4eef4;
+}
+
+.mt-btn-outline {
+  background: none;
+  border: 1.5px solid #0c6d8f;
+  color: #0c6d8f;
+  border-radius: 8px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  padding: 9px 18px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.mt-btn-outline:hover {
+  background: #e5f1f7;
+}
+
+.mt-btn-solid {
+  background: #0c6d8f;
+  border: 1.5px solid #0c6d8f;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  padding: 9px 18px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.mt-btn-solid:hover {
+  background: #095a76;
+}
+
+/* feedback button aligned to the right when it's the only action */
+.mt-btn-feedback-only {
+  margin-left: auto;
+}
+
+/* ── cancelled ───────────────────────────────────────────────── */
+.mt-cancelled-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.mt-cancel-row {
+  display: grid;
+  grid-template-columns: 110px auto;
+  align-items: baseline;
+  column-gap: 8px;
+}
+
+.mt-cancel-label,
+.mt-cancel-value {
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: #c61f1f;
+}
+
+.mt-cancel-label {
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* ── loading / empty ─────────────────────────────────────────── */
+.mt-loading, .mt-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #7fa8be;
+  font-size: 0.95rem;
+}
+
+/* ── success alert (top-right toast) ────────────────────────── */
+.mt-success-alert {
+  position: fixed;
+  top: 88px;
+  right: 24px;
+  z-index: 1400;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: 406px;
+  max-width: calc(100vw - 32px);
+  min-height: 76px;
+  background: #edffee;
+  border: 1px solid #118819;
+  border-radius: 4px;
+  padding: 12px 12px 12px 14px;
+  box-shadow: 0 4px 16px rgba(17, 136, 25, 0.12);
+  animation: mt-alert-in 0.22s ease;
+}
+
+@keyframes mt-alert-in {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.mt-success-alert__icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+}
+
+.mt-success-alert__text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mt-success-alert__title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0a4d0e;
+  line-height: 1.3;
+}
+
+.mt-success-alert__msg {
+  font-size: 0.83rem;
+  color: #1a6e20;
+  line-height: 1.45;
+}
+
+.mt-success-alert__close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #118819;
+  padding: 2px;
+  line-height: 1;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  border-radius: 3px;
+  transition: color 0.15s;
+}
+
+.mt-success-alert__close:hover {
+  color: #0a4d0e;
+}
+
+.mt-success-alert__close:focus-visible {
+  outline: 2px solid #118819;
+  outline-offset: 2px;
+}
+
+/* ── responsive ──────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .mt-card {
+    padding: 20px;
+  }
+  .mt-bookings-grid {
+    grid-template-columns: 1fr;
+  }
+  .mt-details-grid {
+    grid-template-columns: 1fr;
+  }
+  .mt-stepper {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .mt-tour-img {
+    width: 116px;
+    height: 68px;
+  }
+  .mt-success-alert {
+    top: auto;
+    bottom: 16px;
+    right: 16px;
+    left: 16px;
+    width: auto;
+  }
+}
+

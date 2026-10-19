@@ -1,0 +1,70 @@
+/* Verify Code Page Specific Styles */
+.verify-code-container .split__form-inner {
+  width: 496px;
+  max-width: 496px;
+}
+
+.verify-code-container .page-title {
+  opacity: 1;
+  transform: rotate(0deg);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.verify-code-container .verify-message {
+  font-size: 13px;
+  color: var(--color-text);
+  margin: 0 0 24px 0;
+  line-height: 1.5;
+}
+
+.verify-code-container .verify-message strong {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.verify-code-container .field__input {
+  height: 40px;
+}
+
+.verify-code-container .field__label {
+  font-weight: 500;
+}
+
+.verify-code-container .btn-primary {
+  height: 40px;
+  font-weight: 500;
+}
+
+.verify-code-container form {
+  opacity: 1;
+}
+
+.resend-row {
+  margin: -6px 0 16px 0;
+  font-size: 12px;
+}
+
+.resend-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-text);
+  font-size: 12px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.resend-action {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.resend-link:hover .resend-action {
+  text-decoration: underline;
+}
+
+.resend-text {
+  color: var(--color-muted);
+  font-size: 12px;
+}

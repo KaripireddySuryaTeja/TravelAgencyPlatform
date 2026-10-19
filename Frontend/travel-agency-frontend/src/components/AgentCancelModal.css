@@ -1,0 +1,186 @@
+/* ── overlay ─────────────────────────────────────────────────── */
+.acm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 30, 45, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  padding: 24px 16px;
+  overflow-y: auto;
+  animation: acm-fade-in 0.18s ease;
+}
+
+@keyframes acm-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── modal box ───────────────────────────────────────────────── */
+.acm-modal {
+  background: #fff;
+  border-radius: 12px;
+  width: 540px;
+  max-width: 100%;
+  padding: 28px 28px 24px;
+  position: relative;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.22);
+  animation: acm-slide-up 0.22s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@keyframes acm-slide-up {
+  from { transform: translateY(16px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* ── header ──────────────────────────────────────────────────── */
+.acm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.acm-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0d2b3e;
+  margin: 0;
+}
+
+.acm-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #4a7d96;
+  padding: 4px;
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+.acm-close:hover { color: #0c6d8f; }
+
+/* ── booking details table ───────────────────────────────────── */
+.acm-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.acm-detail-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.acm-detail-label {
+  color: #7fa8be;
+  font-weight: 600;
+}
+
+.acm-detail-value {
+  color: #0d2b3e;
+}
+
+/* ── reason dropdown ─────────────────────────────────────────── */
+.acm-reason-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.acm-reason-label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #0d2b3e;
+}
+
+.acm-reason-select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid #d4e5ed;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  color: #0d2b3e;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  appearance: auto;
+}
+
+.acm-reason-select:focus {
+  outline: none;
+  border-color: #0c6d8f;
+}
+
+/* ── action buttons ──────────────────────────────────────────── */
+.acm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.acm-btn-cancel {
+  background: #fff;
+  border: 1.5px solid #0c6d8f;
+  color: #0c6d8f;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.acm-btn-cancel:hover {
+  background: #e5f1f7;
+}
+
+.acm-btn-cancel:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.acm-btn-keep {
+  background: #0c6d8f;
+  border: 1.5px solid #0c6d8f;
+  color: #fff;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.acm-btn-keep:hover {
+  background: #095a76;
+}
+
+/* ── error ───────────────────────────────────────────────────── */
+.acm-error {
+  color: #c61f1f;
+  font-size: 0.84rem;
+  text-align: center;
+}
+
+/* ── responsive ──────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .acm-modal {
+    width: 100%;
+    padding: 20px 16px;
+  }
+  .acm-actions {
+    flex-direction: column;
+  }
+  .acm-detail-row {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,234 @@
+# Default values for sprint1.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: sprint1
+  pullPolicy: IfNotPresent
+  # -- Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+imagePullSecrets:
+  # Define secret to pull images. Secret can be provisioned by edp-install or manually.
+  - name: regcred
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # -- Specifies whether a service account should be created
+  create: true
+  # -- Automatically mount a ServiceAccount's API credentials?
+  automount: true
+  # -- Annotations to add to the service account
+  annotations: {}
+  # -- The name of the service account to use. If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+podLabels: {}
+
+podSecurityContext: {}
+# fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+# runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  enabled: true
+  dnsWildcard: example.com
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+  # kubernetes.io/tls-acme: "true"
+  hosts:
+    # If need to use specific host, define host value below. By default when set 'edpDefault' FQDN: <CODEBASE_NAME>-<CODEBASE_NAMESPACE>.<CLUSTER_DNS_WILDCARD>
+    - host: edpDefault
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+#   memory: 128Mi
+
+startupProbe:
+  tcpSocket:
+    port: http
+  initialDelaySeconds: 20
+  periodSeconds: 5
+  failureThreshold: 20   # allow up to 20*5=100s for first start
+
+livenessProbe:
+  tcpSocket:
+    port: http
+  initialDelaySeconds: 0
+  periodSeconds: 10
+  failureThreshold: 3
+
+readinessProbe:
+  tcpSocket:
+    port: http
+  initialDelaySeconds: 0
+  periodSeconds: 5
+  failureThreshold: 3
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+# Additional volumes on the output Deployment definition.
+volumes: []
+# - name: foo
+#   secret:
+#     secretName: mysecret
+#     optional: false
+
+# Additional volumeMounts on the output Deployment definition.
+volumeMounts: []
+# - name: foo
+#   mountPath: "/etc/foo"
+#   readOnly: true
+
+# -- https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector
+nodeSelector: {}
+
+# -- https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/
+tolerations: []
+
+# -- https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity
+affinity: {}
+
+
+env:
+  extraEnv:
+    # ── Core app secrets ──────────────────────────────────────────────
+    - name: MONGO_URI
+      valueFrom:
+        secretKeyRef:
+          name: travel-agency-secret
+          key: mongo-uri
+    - name: JWT_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: travel-agency-secret
+          key: jwt-secret
+    # ── RabbitMQ ──────────────────────────────────────────────────────
+    - name: RABBITMQ_HOST
+      valueFrom:
+        secretKeyRef:
+          name: travel-agency-secret
+          key: rabbitmq-host
+    - name: RABBITMQ_PORT
+      valueFrom:
+        secretKeyRef:
+          name: travel-agency-secret
+          key: rabbitmq-port
+    - name: RABBITMQ_USERNAME
+      valueFrom:
+        secretKeyRef:
+          name: travel-agency-secret
+          key: rabbitmq-username
+    - name: RABBITMQ_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: travel-agency-secret
+          key: rabbitmq-password
+    # ── AWS credentials ───────────────────────────────────────────────
+    - name: AWS_ACCESS_KEY
+      valueFrom:
+        secretKeyRef:
+          name: travel-agency-secret
+          key: aws-access-key
+    - name: AWS_SECRET_KEY
+      valueFrom:
+        secretKeyRef:
+          name: travel-agency-secret
+          key: aws-secret-key
+    - name: AWS_SESSION_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: travel-agency-secret
+          key: aws-session-token
+    # ── Mail (password-reset) ─────────────────────────────────────────
+    - name: MAIL_USERNAME
+      valueFrom:
+        secretKeyRef:
+          name: travel-agency-secret
+          key: mail-username
+    - name: MAIL_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: travel-agency-secret
+          key: mail-password
+    # ── RabbitMQ feature flag ─────────────────────────────────────────
+    - name: APP_RABBITMQ_ENABLED
+      value: "true"
+    # ── AWS plain config ──────────────────────────────────────────────
+    - name: AWS_REGION
+      value: "eu-west-3"
+    - name: AWS_S3_BUCKET
+      value: "your-s3-bucket-name"
+    # ── OAuth2 social login ───────────────────────────────────────────
+    - name: GOOGLE_CLIENT_ID
+      valueFrom:
+        secretKeyRef:
+          name: travel-agency-secret
+          key: google-client-id
+    - name: GOOGLE_CLIENT_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: travel-agency-secret
+          key: google-client-secret
+    - name: FACEBOOK_CLIENT_ID
+      value: ""
+    - name: FACEBOOK_CLIENT_SECRET
+      value: ""
+    # ── OAuth2 redirect URLs (point to deployed frontend) ─────────────
+    - name: OAUTH2_REDIRECT_SUCCESS_URL
+      value: "https://app.example.com/oauth-success"
+    - name: OAUTH2_REDIRECT_FAILURE_URL
+      value: "https://app.example.com/sign-in?error="
+    # ── App URLs ──────────────────────────────────────────────────────
+    - name: APP_SERVER_URL
+      value: "https://api.example.com"
+    - name: APP_FRONTEND_URL
+      value: "https://app.example.com"
+    # ── CAPTCHA (Google reCAPTCHA v2) ─────────────────────────────────
+    - name: CAPTCHA_ENABLED
+      value: "true"
+    - name: CAPTCHA_SECRET_KEY
+      valueFrom:
+        secretKeyRef:
+          name: travel-agency-secret
+          key: captcha-secret-key
+    - name: CAPTCHA_SITE_KEY
+      valueFrom:
+        secretKeyRef:
+          name: travel-agency-secret
+          key: captcha-site-key

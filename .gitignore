@@ -1,0 +1,25 @@
+# Secrets - never commit
+.env
+.env.*
+!.env.example
+creds.txt
+*.pem
+*.key
+secrets/
+
+# Build output
+target/
+build/
+dist/
+node_modules/
+
+# Logs and local artifacts
+*.log
+document-uploads/
+
+# IDE / OS
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db

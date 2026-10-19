@@ -1,0 +1,404 @@
+.rp-page {
+  min-height: 100vh;
+  background: var(--color-page-bg);
+}
+
+.rp-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 32px 80px;
+}
+
+.rp-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a3a4a;
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+/* ── Filter card ── */
+.rp-filter-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.07);
+}
+
+/* ── Shared dropdown ── */
+.rp-dropdown-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.rp-dropdown-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: #fff;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  color: #6b7280;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.rp-dropdown-btn:hover,
+.rp-dropdown-btn.open {
+  border-color: #0c6d8f;
+  color: #1a3a4a;
+}
+
+.rp-dropdown-btn.has-value {
+  color: #1a3a4a;
+}
+
+.rp-dropdown-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.rp-chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s;
+  color: #6b7280;
+}
+
+.rp-chevron.rotated {
+  transform: rotate(180deg);
+}
+
+/* ── Dropdown menu ── */
+.rp-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 100%;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+  z-index: 300;
+  overflow: hidden;
+}
+
+.rp-dropdown-item {
+  padding: 10px 16px;
+  font-size: 0.93rem;
+  color: #1a3a4a;
+  cursor: pointer;
+  transition: background 0.13s;
+}
+
+.rp-dropdown-item:hover {
+  background: #f0f9ff;
+}
+
+.rp-dropdown-item.selected {
+  font-weight: 600;
+  color: #0c6d8f;
+}
+
+/* ── Calendar panel ── */
+.rp-calendar-panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+  z-index: 300;
+  padding: 16px;
+  width: 280px;
+}
+
+.rp-cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.rp-cal-month-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a3a4a;
+}
+
+.rp-cal-nav {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: 4px;
+  transition: background 0.13s, color 0.13s;
+}
+
+.rp-cal-nav:hover {
+  background: #f0f9ff;
+  color: #0c6d8f;
+}
+
+.rp-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.rp-cal-weekday {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #9ca3af;
+  padding: 4px 0;
+}
+
+.rp-cal-day {
+  text-align: center;
+  font-size: 0.85rem;
+  padding: 6px 2px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #1a3a4a;
+  transition: background 0.13s;
+  user-select: none;
+}
+
+.rp-cal-day:hover:not(.empty) {
+  background: #e0f2fe;
+}
+
+.rp-cal-day.empty {
+  cursor: default;
+}
+
+.rp-cal-day.start,
+.rp-cal-day.end {
+  background: #0c6d8f;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 50%;
+}
+
+.rp-cal-day.in-range {
+  background: #bae6fd;
+  border-radius: 0;
+  color: #0c6d8f;
+}
+
+/* ── Generate button ── */
+.rp-generate-btn {
+  background: #0c6d8f;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.15s, opacity 0.15s;
+}
+
+.rp-generate-btn:hover:not(:disabled) {
+  background: #0a5a78;
+}
+
+.rp-generate-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ── Error ── */
+.rp-error {
+  color: var(--color-error);
+  background: var(--color-error-bg);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 16px;
+  font-size: 0.93rem;
+}
+
+/* ── Results section ── */
+.rp-results {
+  margin-top: 32px;
+}
+
+.rp-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.rp-results-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a3a4a;
+  margin: 0;
+}
+
+.rp-empty {
+  color: #6b7280;
+  font-size: 0.95rem;
+  padding: 24px 0;
+}
+
+/* ── Table ── */
+.rp-table-wrap {
+  background: #fff;
+  border-radius: 12px;
+  overflow-x: auto;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.07);
+}
+
+.rp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  min-width: 820px;
+}
+
+.rp-table thead tr {
+  border-bottom: 1.5px solid #e5e7eb;
+}
+
+.rp-table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.83rem;
+  white-space: nowrap;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rp-table td {
+  padding: 14px 16px;
+  color: #1a3a4a;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: middle;
+}
+
+.rp-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.rp-table tbody tr:hover td {
+  background: #f8fafc;
+}
+
+.rp-email-link {
+  color: #0c6d8f;
+  text-decoration: none;
+}
+
+.rp-email-link:hover {
+  text-decoration: underline;
+}
+
+.rp-delta-pos {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.rp-delta-neg {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+/* ── Download button ── */
+.rp-download-wrap {
+  position: relative;
+}
+
+.rp-download-btn {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a3a4a;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.rp-download-btn:hover,
+.rp-download-btn.open {
+  border-color: #0c6d8f;
+  color: #0c6d8f;
+  background: #f0f9ff;
+}
+
+.rp-download-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+  z-index: 300;
+  overflow: hidden;
+  min-width: 160px;
+}
+
+.rp-download-item {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  color: #1a3a4a;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.13s;
+}
+
+.rp-download-item:hover:not(:disabled) {
+  background: #f0f9ff;
+}
+
+.rp-download-item:disabled {
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .rp-filter-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .rp-generate-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .rp-main {
+    padding: 24px 16px 60px;
+  }
+}

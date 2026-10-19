@@ -1,0 +1,513 @@
+/* =========================================================
+   Page wrapper — ocean-blue background
+   ========================================================= */
+.split-page {
+  min-height: 100dvh;
+  background: var(--color-page-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 3vw, 28px);
+}
+
+/* =========================================================
+   Split layout — form card (left) + photo card (right)
+   ========================================================= */
+.split {
+  display: flex;
+  align-items: stretch;
+  gap: 16px;
+  width: 100%;
+  max-width: 1060px;
+  height: min(calc(100dvh - 56px), 760px);
+}
+
+.split__form {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: clamp(20px, 4vh, 44px) clamp(24px, 4vw, 48px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+}
+
+.split__form-inner {
+  width: 100%;
+  max-width: clamp(400px, 30vw, 560px);
+  margin: auto;
+  animation: form-enter 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes form-enter {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.split__panel {
+  position: relative;
+  overflow: hidden;
+  background: #0f172a;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.split__panel-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 65%;
+}
+
+.split__panel-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0%, transparent 35%);
+  z-index: 1;
+}
+
+.brand {
+  position: absolute;
+  top: clamp(16px, 3vh, 24px);
+  left: clamp(16px, 3vw, 24px);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 2;
+}
+.brand__mark { width: 22px; height: 22px; color: #ffffff; }
+.brand__name { font-weight: 700; color: #ffffff; font-size: 15px; }
+
+.panel-heading {
+  position: absolute;
+  left: clamp(28px, 4vw, 56px);
+  bottom: clamp(32px, 6vh, 72px);
+  margin: 0;
+  color: #0B3857;
+  font-family: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 800;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: 0;
+  font-size: clamp(32px, 4vw, 54px);
+  text-align: left;
+  max-width: 85%;
+  z-index: 2;
+}
+
+/* =========================================================
+   Typography
+   ========================================================= */
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--color-eyebrow);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  transition: color 150ms;
+}
+.page-title {
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 700;
+  margin: 0 0 12px 0;
+}
+
+/* =========================================================
+   Form grid
+   ========================================================= */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 14px;
+  row-gap: 0;
+}
+.form-row { grid-column: 1 / -1; }
+
+/* =========================================================
+   Fields
+   ========================================================= */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.field__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.field__input {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 9px 12px;
+  height: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: #fff;
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 120ms, box-shadow 120ms;
+  width: 100%;
+}
+.field__input::placeholder { color: #9ca3af; }
+.field__input:focus {
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px rgba(30, 127, 168, 0.15);
+}
+.field__input--error {
+  border-color: var(--color-error);
+  background: var(--color-error-bg);
+}
+.field__input--error:focus {
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+.field__error {
+  color: var(--color-error);
+  font-size: 12px;
+  margin-top: 2px;
+}
+.field__hint {
+  font-size: 12px;
+  color: var(--color-muted);
+  margin-top: 2px;
+}
+
+.password-wrap { position: relative; }
+.password-wrap .field__input { padding-right: 40px; }
+.password-wrap .field__input::-ms-reveal,
+.password-wrap .field__input::-ms-clear { display: none; }
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 0;
+  padding: 4px;
+  color: var(--color-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+.password-toggle:hover { color: var(--color-text); }
+.password-toggle:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 1px;
+}
+
+/* =========================================================
+   Password rules
+   ========================================================= */
+.rules {
+  list-style: none;
+  padding: 0;
+  margin: 1px 0 6px 0;
+  display: grid;
+  gap: 2px;
+}
+.rules__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  line-height: 1.3;
+  color: var(--color-muted);
+}
+.rules__item--ok   { color: var(--color-success); }
+.rules__item--fail { color: var(--color-error); }
+.rules__dot {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+}
+
+/* =========================================================
+   Button
+   ========================================================= */
+.btn-primary {
+  width: 100%;
+  height: 44px;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 120ms;
+  margin-top: 2px;
+}
+.btn-primary:hover:not(:disabled) { background: var(--color-primary-hover); }
+.btn-primary:disabled { background: #b0c4ce; cursor: not-allowed; opacity: 0.7; }
+
+.btn-secondary {
+  width: 100%;
+  height: 44px;
+  border: 1.5px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  background: #fff;
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 120ms, border-color 120ms;
+  cursor: pointer;
+}
+.btn-secondary:hover { background: #f0f4ff; }
+
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.forgot-row {
+  margin: -6px 0 16px 0;
+  font-size: 13px;
+}
+.forgot-row a { font-weight: 500; }
+
+/* =========================================================
+   Footer link
+   ========================================================= */
+.form-footer {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+.form-footer a { font-weight: 600; }
+
+/* =========================================================
+   Banner (network / generic errors)
+   ========================================================= */
+.banner-error {
+  background: var(--color-error-bg);
+  border: 1px solid #fecaca;
+  color: var(--color-error);
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+/* =========================================================
+   Toast (top-right)
+   ========================================================= */
+.toast {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  background: #fff;
+  border-left: 4px solid var(--color-success);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.14);
+  padding: 14px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 300px;
+  max-width: 420px;
+  z-index: 1000;
+  animation: toast-in 180ms ease-out;
+}
+.toast__icon { color: var(--color-success); flex: 0 0 20px; margin-top: 2px; }
+.toast__title { font-weight: 700; font-size: 13px; margin-bottom: 2px; }
+.toast__body  { font-size: 12px; color: var(--color-muted); line-height: 1.4; }
+.toast__close {
+  background: transparent;
+  border: 0;
+  padding: 2px;
+  color: var(--color-muted);
+  margin-left: auto;
+}
+@keyframes toast-in {
+  from { transform: translateY(-8px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* =========================================================
+   Responsive breakpoints
+   ========================================================= */
+@media (max-height: 820px) {
+  .field { margin-bottom: 8px; }
+  .page-title { margin-bottom: 10px; }
+  .rules { margin: 1px 0 4px 0; gap: 1px; }
+  .rules__item { font-size: 11px; }
+  .form-footer { margin-top: 10px; }
+}
+
+@media (max-width: 1200px) {
+  .split { max-width: 960px; }
+  .split__form-inner { max-width: 400px; }
+  .form-grid { column-gap: 12px; }
+}
+
+@media (max-width: 900px) {
+  .split-page { padding: 0; align-items: stretch; }
+  .split { flex-direction: column; gap: 0; height: auto; }
+  .split__panel { display: none; }
+  .split__form {
+    border-radius: 0;
+    box-shadow: none;
+    flex: 1;
+    min-height: 100dvh;
+    overflow-y: visible;
+    justify-content: flex-start;
+    padding: 32px 20px;
+  }
+  .split__form-inner { max-width: 480px; }
+  .form-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .split__form { padding: 24px 16px; }
+  .page-title { font-size: 22px; }
+  .toast { left: 12px; right: 12px; min-width: auto; max-width: none; }
+}
+
+@media (max-width: 480px) and (max-height: 700px) {
+  .field { margin-bottom: 8px; }
+  .rules { margin: 2px 0 4px 0; }
+  .btn-primary { margin-top: 2px; }
+}
+
+/* =========================================================
+   Social login — divider + buttons (US_16)
+   ========================================================= */
+.social-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 16px 0 12px;
+}
+.social-divider__line {
+  flex: 1;
+  height: 1px;
+  background: var(--color-border, #e5e7eb);
+}
+.social-divider__text {
+  font-size: 12px;
+  color: var(--color-muted, #6b7280);
+  white-space: nowrap;
+}
+
+.social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 40px;
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: var(--radius-md, 8px);
+  background: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text, #111827);
+  cursor: pointer;
+  transition: background 120ms, border-color 120ms, box-shadow 120ms;
+}
+.btn-social:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
+}
+.btn-social:active {
+  background: #f3f4f6;
+}
+
+.social-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.social-consent {
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--color-muted, #6b7280);
+  text-align: center;
+  line-height: 1.5;
+}
+.social-consent a {
+  color: var(--color-primary, #1e7fa8);
+  text-decoration: none;
+}
+.social-consent a:hover {
+  text-decoration: underline;
+}
+
+/* Switch-account hint (e.g. "Need a different GitHub account?") */
+/* Inline retry bar shown below the OAuth error banner */
+.oauth-retry-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: -4px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: var(--color-muted, #6b7280);
+}
+.oauth-retry-bar__label {
+  font-weight: 500;
+  color: var(--color-muted, #6b7280);
+}
+.oauth-retry-bar__btn {
+  all: unset;
+  cursor: pointer;
+  color: var(--color-primary, #1e7fa8);
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: underline;
+}
+.oauth-retry-bar__btn:hover {
+  opacity: 0.8;
+}
+.oauth-retry-bar__sep {
+  color: var(--color-muted, #9ca3af);
+  user-select: none;
+}
+
+/* Switch-account hint (e.g. "Need a different GitHub account?") */
+.social-switch-hint {
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--color-muted, #9ca3af);
+  text-align: center;
+  line-height: 1.5;
+}
+.social-switch-hint a {
+  color: var(--color-muted, #9ca3af);
+  text-decoration: underline;
+}
+.social-switch-hint a:hover {
+  color: var(--color-primary, #1e7fa8);
+}
+
+/* Facebook button — blue border on hover */
+.btn-social--facebook:hover {
+  border-color: #1877F2;
+  box-shadow: 0 1px 4px rgba(24, 119, 242, 0.2);
+}

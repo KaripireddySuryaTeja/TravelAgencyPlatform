@@ -1,0 +1,223 @@
+/* ── overlay ─────────────────────────────────────────────────── */
+.ccm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 30, 45, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  padding: 24px 16px;
+  overflow-y: auto;
+  animation: ccm-fade-in 0.18s ease;
+}
+
+@keyframes ccm-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── modal box ───────────────────────────────────────────────── */
+.ccm-modal {
+  background: #fff;
+  border-radius: 12px;
+  width: 540px;
+  max-width: 100%;
+  padding: 28px 28px 24px;
+  position: relative;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.22);
+  animation: ccm-slide-up 0.22s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@keyframes ccm-slide-up {
+  from { transform: translateY(16px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* ── header ──────────────────────────────────────────────────── */
+.ccm-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.ccm-title-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ccm-tour-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0d2b3e;
+  margin: 0;
+}
+
+.ccm-tour-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: #7fa8be;
+}
+
+.ccm-rating {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  color: #0d2b3e;
+  font-weight: 600;
+}
+
+.ccm-star {
+  color: #f5a623;
+}
+
+.ccm-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #4a7d96;
+  padding: 4px;
+  line-height: 1;
+  transition: color 0.15s;
+  flex-shrink: 0;
+}
+
+.ccm-close:hover { color: #0c6d8f; }
+
+/* ── booking details ─────────────────────────────────────────── */
+.ccm-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ccm-detail-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.ccm-detail-label {
+  color: #7fa8be;
+  font-weight: 600;
+}
+
+.ccm-detail-value {
+  color: #0d2b3e;
+}
+
+/* ── documents section ───────────────────────────────────────── */
+.ccm-docs-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ccm-docs-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #0d2b3e;
+}
+
+.ccm-docs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ccm-doc-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #0c6d8f;
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.ccm-doc-link:hover {
+  text-decoration: underline;
+}
+
+.ccm-no-docs {
+  font-size: 0.84rem;
+  color: #b0c8d8;
+  font-style: italic;
+}
+
+/* ── total price ─────────────────────────────────────────────── */
+.ccm-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #f0f8fc;
+  border-radius: 8px;
+  font-size: 0.92rem;
+}
+
+.ccm-total-label {
+  color: #2d5a70;
+  font-weight: 600;
+}
+
+.ccm-total-value {
+  color: #0d2b3e;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* ── confirm button ──────────────────────────────────────────── */
+.ccm-btn-confirm {
+  width: 100%;
+  background: #0c6d8f;
+  border: 1.5px solid #0c6d8f;
+  color: #fff;
+  border-radius: 8px;
+  padding: 14px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.ccm-btn-confirm:hover {
+  background: #095a76;
+}
+
+.ccm-btn-confirm:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── error ───────────────────────────────────────────────────── */
+.ccm-error {
+  color: #c61f1f;
+  font-size: 0.84rem;
+  text-align: center;
+}
+
+/* ── responsive ──────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .ccm-modal {
+    width: 100%;
+    padding: 20px 16px;
+  }
+  .ccm-detail-row {
+    grid-template-columns: 1fr;
+  }
+}

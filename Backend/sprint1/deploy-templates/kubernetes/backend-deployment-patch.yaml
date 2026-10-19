@@ -1,0 +1,49 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Deployment patch – inject Azure OpenAI secret into the backend container
+#
+# Apply this together with the main Helm chart values or as a Kustomize patch.
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# Add the following under spec.template.spec.containers[backend]:
+#
+# env:
+#   - name: AZURE_OPENAI_API_KEY
+#     valueFrom:
+#       secretKeyRef:
+#         name: azure-openai-secret
+#         key: api-key
+#
+#   - name: AZURE_OPENAI_ENDPOINT
+#     value: "https://your-resource.openai.azure.com/"
+#
+#   - name: AZURE_OPENAI_DEPLOYMENT
+#     value: "gpt-4.1-mini-2025-04-14"
+# ─────────────────────────────────────────────────────────────────────────────
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: travel-agency-backend
+  namespace: travel-agency
+spec:
+  template:
+    spec:
+      containers:
+        - name: backend
+          env:
+            # ── Azure OpenAI – AI-Powered Content Moderation ──────────────────
+            - name: AZURE_OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: azure-openai-secret
+                  key: api-key
+
+            - name: AZURE_OPENAI_ENDPOINT
+              value: "https://your-resource.openai.azure.com/"
+
+            - name: AZURE_OPENAI_DEPLOYMENT
+              value: "gpt-4.1-mini-2025-04-14"
+
+            - name: AZURE_OPENAI_TIMEOUT_SECONDS
+              value: "30"
+

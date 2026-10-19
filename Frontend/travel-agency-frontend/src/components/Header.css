@@ -1,0 +1,283 @@
+.header {
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+
+.header-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 56px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.header-inner .nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo-text {
+  font-size: 1.28rem;
+  font-weight: 700;
+  color: #0c6d8f;
+  letter-spacing: -0.3px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  height: 64px;
+}
+
+.nav-tab {
+  background: none;
+  border: none;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #1a3a4a;
+  padding: 0 24px;
+  height: 64px;
+  position: relative;
+  transition: color 0.18s;
+  letter-spacing: 0.01em;
+}
+
+.nav-tab:hover {
+  color: #1a3a4a;
+}
+
+.nav-tab.active {
+  color: #1a3a4a;
+  font-weight: 700;
+}
+
+.nav-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 65%;
+  height: 3px;
+  background: #0c6d8f;
+  border-radius: 3px 3px 0 0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.user-btn {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 50%;
+  transition: background 0.18s;
+}
+
+.user-btn:hover {
+  background: #f0f6f9;
+}
+
+/* Profile Section */
+.profile-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.profile-button {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 4px 10px 4px 4px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+
+.profile-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d9eef7, #c5e3f1);
+  border: 1px solid #b7d8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.profile-avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.profile-avatar-initials {
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  font-weight: 700;
+  color: #195470;
+}
+
+.profile-button:hover {
+  background: #f0f6f9;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 90px;
+}
+
+.profile-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a3a4a;
+  line-height: 1.2;
+}
+
+.profile-role {
+  font-size: 1.1rem;
+  color: #1a3a4a;
+  font-weight: 500;
+  line-height: 1.1;
+  text-transform: none;
+}
+
+/* Profile Dropdown */
+.profile-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: white;
+  border: 1px solid #e0e8ed;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 300;
+  min-width: 236px;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-content {
+  padding: 12px;
+}
+
+.dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 2px 0 12px;
+}
+
+.user-detail {
+  flex: 1;
+  min-width: 0;
+}
+
+.user-name-large {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1a3a4a;
+  margin-bottom: 2px;
+  word-break: break-word;
+}
+
+.user-email {
+  font-size: 0.78rem;
+  color: #6a8a9d;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: #e0e8ed;
+  margin: 8px 0;
+}
+
+.dropdown-item {
+  width: 100%;
+  padding: 10px 12px;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  font-size: 0.95rem;
+  color: #1a3a4a;
+  transition: all 0.18s;
+  font-weight: 500;
+}
+
+.dropdown-item:hover:not(.logout) {
+  background: #f0f6f9;
+}
+
+.dropdown-item.logout {
+  color: #1a3a4a;
+}
+
+.dropdown-item.logout:hover {
+  background: #f0f6f9;
+  color: #1a3a4a;
+}
+
+@media (max-width: 768px) {
+  .profile-button {
+    padding-right: 6px;
+  }
+
+  .profile-info {
+    min-width: auto;
+  }
+
+  .profile-role {
+    font-size: 1rem;
+  }
+
+  .profile-dropdown {
+    right: -8px;
+    min-width: 220px;
+  }
+}

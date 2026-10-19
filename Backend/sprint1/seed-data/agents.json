@@ -1,0 +1,44 @@
+[
+  {
+    "_id": "agent001",
+    "firstName": "Tyrone",
+    "lastName": "Boyer",
+    "email": "agent1@travelagency.com",
+    "passwordHash": "$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lh9W",
+    "role": "TRAVEL_AGENT",
+    "phone": "480-221-1885",
+    "messengerLink": "Messenger",
+    "failedLoginAttempts": 0,
+    "lockedUntil": null,
+    "createdAt": {"$date": "2026-01-01T00:00:00.000Z"},
+    "updatedAt": {"$date": "2026-01-01T00:00:00.000Z"}
+  },
+  {
+    "_id": "agent002",
+    "firstName": "Sarah",
+    "lastName": "Mitchell",
+    "email": "agent2@travelagency.com",
+    "passwordHash": "$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lh9W",
+    "role": "TRAVEL_AGENT",
+    "phone": "312-555-0198",
+    "messengerLink": "WhatsApp",
+    "failedLoginAttempts": 0,
+    "lockedUntil": null,
+    "createdAt": {"$date": "2026-01-01T00:00:00.000Z"},
+    "updatedAt": {"$date": "2026-01-01T00:00:00.000Z"}
+  },
+  {
+    "_id": "agent003",
+    "firstName": "Marco",
+    "lastName": "Rossi",
+    "email": "agent3@travelagency.com",
+    "passwordHash": "$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lh9W",
+    "role": "TRAVEL_AGENT",
+    "phone": "+39-06-555-1234",
+    "messengerLink": "Telegram",
+    "failedLoginAttempts": 0,
+    "lockedUntil": null,
+    "createdAt": {"$date": "2026-01-01T00:00:00.000Z"},
+    "updatedAt": {"$date": "2026-01-01T00:00:00.000Z"}
+  }
+]

@@ -1,0 +1,50 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+/demo.iml
+/mvnw.cmd
+/mvnw
+
+### Java classes ###
+target/
+
+
+### logs ###
+backend-embedded.log.*
+backend-live.log.*
+backend-start.log.*
+backend-start-plan.log.*
+backend-status.log.*
+
+### secrets ###
+.env
+.env.properties
+src/main/resources/application-local.properties
+### secrets / local files ###
+.env
+.env.*
+!.env.example
+document-uploads/
+*.log
